@@ -4,8 +4,9 @@ using namespace std;
 #define WAIT_TIME 2000
 #define LENGTH 3
 #define HEIGHT 3
-enum GameMode { PlayerMod = 1, AIMod = 2 };
 
+void Menu();
+void CreatField(char field[LENGTH][HEIGHT]);
 
 void GamePl();
 void FirstPlayerTr(char field[LENGTH][HEIGHT]);
@@ -18,86 +19,54 @@ void AITurn(char field[LENGTH][HEIGHT], int choice);
 void EndGameAI(char field[LENGTH][HEIGHT],int choce,int turn);
 
 
-void Menu();
-void CreatField(char field[LENGTH][HEIGHT]);
 
 
 
-
-void EndGamePl(char field[LENGTH][HEIGHT], int turn)
+void Menu()
 {
-    for (int i = 0; i < HEIGHT; i++)
+    system("cls");
+    int choice;
+    cout << "\t\t\tÐœÐ•ÐÐ®\n";
+    cout << "1. ÐÐ¾Ð²Ð°Ñ Ð˜Ð³Ñ€Ð°\n";
+    cout << "2. Ð’Ñ‹Ð¹Ñ‚Ð¸\n";
+    cout << "\nÐ’Ð²ÐµÐ´Ð¸Ñ‚Ðµ ÑÐ¾Ð¾Ñ‚Ð²ÐµÑ‚ÑÑ‚Ð²ÑƒÑŽÑ‰ÑƒÑŽ Ñ†Ð¸Ñ„Ñ€Ñƒ Ð´Ð»Ñ Ð²Ñ‹Ð±Ð¾Ñ€Ð°: ";
+    cin >> choice;
+    switch (choice)
     {
-        if ((field[i][0] == field[i][1] && field[i][1] == field[i][2] && field[i][0] == 'x') ||
-            (field[0][i] == field[1][i] && field[1][i] == field[2][i] && field[0][i] == 'x') ||
-            (field[0][0] == field[1][1] && field[1][1] == field[2][2] && field[0][0] == 'x') ||
-            (field[0][2] == field[1][1] && field[1][1] == field[2][0] && field[0][2] == 'x'))
+    case 1:
+    {
+        while (true) 
         {
-            cout << "Ïîáåäà Èãðîêà ¹1.\n"; Sleep(WAIT_TIME); system("cls");
-            Menu();
-        }
-        else if ((field[i][0] == field[i][1] && field[i][1] == field[i][2] && field[i][0] == 'o') ||
-            (field[0][i] == field[1][i] && field[1][i] == field[2][i] && field[0][i] == 'o') ||
-            (field[0][0] == field[1][1] && field[1][1] == field[2][2] && field[0][0] == 'o') ||
-            (field[0][2] == field[1][1] && field[1][1] == field[2][0] && field[0][2] == 'o'))
-        {
-            cout << "Ïîáåäà Èãðîêà ¹2.\n"; Sleep(WAIT_TIME); system("cls");
-            Menu();
-        }
-        else if (turn == 9)
-        {
-            cout << "Íè÷üÿ.\n"; Sleep(WAIT_TIME); system("cls");
-            Menu();
+            system("cls");
+            cout << "Ð’Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ Ñ€ÐµÐ¶Ð¸Ð¼ Ð¸Ð³Ñ€Ñ‹:\n";
+            cout << "1. Ð¡ Ð¸Ð³Ñ€Ð¾ÐºÐ¾Ð¼\n";
+            cout << "2. C ÐºÐ¾Ð¼Ð¿ÑŒÑŽÑ‚ÐµÑ€Ð¾Ð¼\n";
+            cin >> choice;
+            system("cls");
+            if (choice == 1)
+            {
+                cout << "Ð’Ñ‹ Ð²Ñ‹Ð±Ñ€Ð°Ð»Ð¸ Ñ€ÐµÐ¶Ð¸Ð¼ Ñ Ð¸Ð³Ñ€Ð¾ÐºÐ¾Ð¼.\n";
+                Sleep(WAIT_TIME);
+                GamePl();
+                break;
+            }
+            else if (choice == 2)
+            {
+                cout << "Ð’Ñ‹ Ð²Ñ‹Ð±Ñ€Ð°Ð»Ð¸ Ñ€ÐµÐ¶Ð¸Ð¼ Ñ ÐºÐ¾Ð¼Ð¿ÑŒÑŽÑ‚ÐµÑ€Ð¾Ð¼.\n";
+                Sleep(WAIT_TIME);
+                GameAI();
+                break;
+            }
         }
     }
-}
-void EndGameAI(char field[LENGTH][HEIGHT], int choice, int turn)
-{
-    for (int i = 0; i < HEIGHT; i++)
+    case 2:
     {
-        if (choice == 1)
-        {
-            if ((field[i][0] == field[i][1] && field[i][1] == field[i][2] && field[i][0] == 'x') ||
-                (field[0][i] == field[1][i] && field[1][i] == field[2][i] && field[0][i] == 'x') ||
-                (field[0][0] == field[1][1] && field[1][1] == field[2][2] && field[0][0] == 'x') ||
-                (field[0][2] == field[1][1] && field[1][1] == field[2][0] && field[0][2] == 'x'))
-            {
-                cout << "Âû ïîáåäèëè!\n"; Sleep(WAIT_TIME); system("cls");
-                Menu();
-            }
-            if ((field[i][0] == field[i][1] && field[i][1] == field[i][2] && field[i][0] == 'o') ||
-                (field[0][i] == field[1][i] && field[1][i] == field[2][i] && field[0][i] == 'o') ||
-                (field[0][0] == field[1][1] && field[1][1] == field[2][2] && field[0][0] == 'o') ||
-                (field[0][2] == field[1][1] && field[1][1] == field[2][0] && field[0][2] == 'o'))
-            {
-                cout << "Âû ïðîèãðàëè.\n"; Sleep(WAIT_TIME); system("cls");
-                Menu();
-            }
-        }
-        else if (choice == 2)
-        {
-            if ((field[i][0] == field[i][1] && field[i][1] == field[i][2] && field[i][0] == 'x') ||
-                (field[0][i] == field[1][i] && field[1][i] == field[2][i] && field[0][i] == 'x') ||
-                (field[0][0] == field[1][1] && field[1][1] == field[2][2] && field[0][0] == 'x') ||
-                (field[0][2] == field[1][1] && field[1][1] == field[2][0] && field[0][2] == 'x'))
-            {
-                cout << "Âû ïðîèãðàëè!\n"; Sleep(WAIT_TIME); system("cls");
-                Menu();
-            }
-            if ((field[i][0] == field[i][1] && field[i][1] == field[i][2] && field[i][0] == 'o') ||
-                (field[0][i] == field[1][i] && field[1][i] == field[2][i] && field[0][i] == 'o') ||
-                (field[0][0] == field[1][1] && field[1][1] == field[2][2] && field[0][0] == 'o') ||
-                (field[0][2] == field[1][1] && field[1][1] == field[2][0] && field[0][2] == 'o'))
-            {
-                cout << "Âû ïîáåäèëè!\n"; Sleep(WAIT_TIME); system("cls");
-                Menu();
-            }
-        }
-        else if (turn == 9)
-        {
-            cout << "Íè÷üÿ.\n"; Sleep(WAIT_TIME); system("cls");
-            Menu();
-        }
+        system("cls");
+        cout << "Ð’Ð« Ð’Ð«Ð¨Ð›Ð˜ Ð˜Ð— Ð˜Ð“Ð Ð«.";
+        break;
+    }
+    default:
+        Menu();
     }
 }
 void CreatField(char field[LENGTH][HEIGHT])
@@ -110,129 +79,6 @@ void CreatField(char field[LENGTH][HEIGHT])
             field[i][j] = '#';
         }
     }
-}
-void Menu()
-{
-    int choice;
-    cout << "\t\t\tÌÅÍÞ\n";
-    cout << "1. Íîâàÿ Èãðà\n";
-    cout << "2. Âûéòè\n";
-    cout << "\nÂâåäèòå ñîîòâåòñòâóþùóþ öèôðó äëÿ âûáîðà: ";
-    cin >> choice;
-    Sleep(WAIT_TIME); system("cls");
-    switch (choice)
-    {
-    case 1:
-    {
-        cout << "Âûáåðèòå ðåæèì èãðû:\n";
-        cout << "1. Ñ èãðîêîì\n";
-        cout << "2. C êîìïüþòåðîì\n";
-        cin >> choice;
-        if (choice == PlayerMod)
-        {
-            cout << "Âû âûáðàëè ðåæèì ñ èãðîêîì.\n";
-            Sleep(WAIT_TIME);
-            GamePl();
-            break;
-        }
-        else if (choice == AIMod)
-        {
-            cout << "Âû âûáðàëè ðåæèì ñ êîìïüþòåðîì.\n";
-            Sleep(WAIT_TIME);
-            GameAI();
-            break;
-        }
-        else
-        {
-            cout << "Îøèáêà.";
-            break;
-        }
-    }
-    case 2:
-    {
-        cout << "ÂÛ ÂÛØËÈ ÈÇ ÈÃÐÛ.";
-        break;
-    }
-    default:
-        cout << "Îøèáêà.";
-    }
-}
-
-void FirstPlayerTr(char field[LENGTH][HEIGHT])
-{
-    int x, y;
-    do
-    {
-        cout << "Õîä Èãðîêà ¹1(êðåñòèêè):\n";
-        for (int i = 0; i < HEIGHT; i++)
-        {
-            for (int j = 0; j < LENGTH; j++)
-            {
-                cout << field[i][j];
-            }
-            cout << "\n";
-        }
-        cout << "Ââåäèòå ïîçèöèþ(x,y): ";
-        cin >> x >> y;
-        system("cls");
-    } while (x <= 0 || x > HEIGHT || y <= 0 || y > LENGTH || field[x - 1][y - 1] == 'x' || field[x - 1][y - 1] == 'o');
-    field[x - 1][y - 1] = 'x';
-}
-void SecondPlayerTr(char field[LENGTH][HEIGHT])
-{
-    int x, y;
-    do
-    {
-        cout << "Õîä Èãðîêà ¹2(íîëèêè):\n";
-        for (int i = 0; i < HEIGHT; i++)
-        {
-            for (int j = 0; j < LENGTH; j++)
-            {
-                cout << field[i][j];
-            }
-            cout << "\n";
-        }
-        cout << "Ââåäèòå ïîçèöèþ(x,y): ";
-        cin >> x >> y;
-        system("cls");
-    } while (x <= 0 || x > HEIGHT || y <= 0 || y > LENGTH || field[x - 1][y - 1] == 'x' || field[x - 1][y - 1] == 'o');
-    field[x - 1][y - 1] = 'o';
-}
-void AITurn(char field[LENGTH][HEIGHT],int choice)
-{
-    int x, y;
-    do
-    {
-        x = rand() % 3;
-        y = rand() % 3;
-        system("cls");
-    } while (field[x][y] == 'x' || field[x][y] == 'o');
-    if(choice == 1)
-        field[x][y] = 'o';
-    if(choice == 2)
-        field[x][y] = 'x';
-}
-void PlayerTurn(char field[LENGTH][HEIGHT],int choice) 
-{
-    int x, y;
-    do
-    {
-        for (int i = 0; i < HEIGHT; i++)
-        {
-            for (int j = 0; j < LENGTH; j++)
-            {
-                cout << field[i][j];
-            }
-            cout << "\n";
-        }
-        cout << "Ââåäèòå ïîçèöèþ(x,y): ";
-        cin >> x >> y;
-        system("cls");
-    } while (x <= 0 || x > HEIGHT || y <= 0 || y > LENGTH || field[x - 1][y - 1] == 'x' || field[x - 1][y - 1] == 'o');
-    if (choice == 1)
-        field[x - 1][y - 1] = 'x';
-    if (choice == 2) 
-        field[x - 1][y - 1] = 'o';
 }
 
 void GamePl()
@@ -254,38 +100,204 @@ void GamePl()
         system("cls");
     } while (true);
 }
+void FirstPlayerTr(char field[LENGTH][HEIGHT])
+{
+    int x, y;
+    do
+    {
+        cout << "Ð¥Ð¾Ð´ Ð˜Ð³Ñ€Ð¾ÐºÐ° â„–1(ÐºÑ€ÐµÑÑ‚Ð¸ÐºÐ¸):\n";
+        for (int i = 0; i < HEIGHT; i++)
+        {
+            for (int j = 0; j < LENGTH; j++)
+            {
+                cout << field[i][j];
+            }
+            cout << "\n";
+        }
+        cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð¿Ð¾Ð·Ð¸Ñ†Ð¸ÑŽ(x,y): ";
+        cin >> x >> y;
+        system("cls");
+    } while (x <= 0 || x > HEIGHT || y <= 0 || y > LENGTH || field[x - 1][y - 1] == 'x' || field[x - 1][y - 1] == 'o');
+    field[x - 1][y - 1] = 'x';
+}
+void SecondPlayerTr(char field[LENGTH][HEIGHT])
+{
+    int x, y;
+    do
+    {
+        cout << "Ð¥Ð¾Ð´ Ð˜Ð³Ñ€Ð¾ÐºÐ° â„–2(Ð½Ð¾Ð»Ð¸ÐºÐ¸):\n";
+        for (int i = 0; i < HEIGHT; i++)
+        {
+            for (int j = 0; j < LENGTH; j++)
+            {
+                cout << field[i][j];
+            }
+            cout << "\n";
+        }
+        cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð¿Ð¾Ð·Ð¸Ñ†Ð¸ÑŽ(x,y): ";
+        cin >> x >> y;
+        system("cls");
+    } while (x <= 0 || x > HEIGHT || y <= 0 || y > LENGTH || field[x - 1][y - 1] == 'x' || field[x - 1][y - 1] == 'o');
+    field[x - 1][y - 1] = 'o';
+}
+void EndGamePl(char field[LENGTH][HEIGHT], int turn)
+{
+    for (int i = 0; i < HEIGHT; i++)
+    {
+        if ((field[i][0] == field[i][1] && field[i][1] == field[i][2] && field[i][0] == 'x') ||
+            (field[0][i] == field[1][i] && field[1][i] == field[2][i] && field[0][i] == 'x') ||
+            (field[0][0] == field[1][1] && field[1][1] == field[2][2] && field[0][0] == 'x') ||
+            (field[0][2] == field[1][1] && field[1][1] == field[2][0] && field[0][2] == 'x'))
+        {
+            cout << "ÐŸÐ¾Ð±ÐµÐ´Ð° Ð˜Ð³Ñ€Ð¾ÐºÐ° â„–1.\n"; Sleep(WAIT_TIME); system("cls");
+            Menu();
+        }
+        else if ((field[i][0] == field[i][1] && field[i][1] == field[i][2] && field[i][0] == 'o') ||
+            (field[0][i] == field[1][i] && field[1][i] == field[2][i] && field[0][i] == 'o') ||
+            (field[0][0] == field[1][1] && field[1][1] == field[2][2] && field[0][0] == 'o') ||
+            (field[0][2] == field[1][1] && field[1][1] == field[2][0] && field[0][2] == 'o'))
+        {
+            cout << "ÐŸÐ¾Ð±ÐµÐ´Ð° Ð˜Ð³Ñ€Ð¾ÐºÐ° â„–2.\n"; Sleep(WAIT_TIME); system("cls");
+            Menu();
+        }
+        else if (turn == 9)
+        {
+            cout << "ÐÐ¸Ñ‡ÑŒÑ.\n"; Sleep(WAIT_TIME); system("cls");
+            Menu();
+        }
+    }
+}
+
 void GameAI()
 {
     system("cls");
-    int choice;
+    int choice = 0;
     char field[LENGTH][HEIGHT];
 
-    cout << "Âûáåðèòå çà ÷òî õîòèòå èãðàòü:\n1:Êðåñòèêè.\n2:Íîëèêè\n";
+    cout << "Ð’Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ Ð·Ð° Ñ‡Ñ‚Ð¾ Ñ…Ð¾Ñ‚Ð¸Ñ‚Ðµ Ð¸Ð³Ñ€Ð°Ñ‚ÑŒ:\n1:ÐšÑ€ÐµÑÑ‚Ð¸ÐºÐ¸.\n2:ÐÐ¾Ð»Ð¸ÐºÐ¸\n";
     cin >> choice;
     switch (choice)
     {
     case 1:
     {
-        cout << "Âàø âûáîð:Êðåñòèêè."; Sleep(WAIT_TIME); system("cls");
+        cout << "Ð’Ð°Ñˆ Ð²Ñ‹Ð±Ð¾Ñ€:ÐšÑ€ÐµÑÑ‚Ð¸ÐºÐ¸."; Sleep(WAIT_TIME); system("cls");
         break;
     }
     case 2:
     {
-        cout << "Âàø âûáîð:Íîëèêè."; Sleep(WAIT_TIME); system("cls");
+        cout << "Ð’Ð°Ñˆ Ð²Ñ‹Ð±Ð¾Ñ€:ÐÐ¾Ð»Ð¸ÐºÐ¸."; Sleep(WAIT_TIME); system("cls");
         break;
     }
+    default:
+        GameAI();
     }
     int turn = 0;
     CreatField(field);
     do
     {
-        PlayerTurn(field, choice);
-        turn++;
-        EndGameAI(field, choice, turn);
-        
-        AITurn(field,choice);
-        turn++;
-        EndGameAI(field, choice, turn);
+        if (choice == 1) 
+        {
+            PlayerTurn(field, choice);
+            turn++;
+            EndGameAI(field, choice, turn);
+            AITurn(field, choice);
+            turn++;
+            EndGameAI(field, choice, turn);
+        }
+        else if (choice == 2) 
+        {
+            AITurn(field, choice);
+            turn++;
+            EndGameAI(field, choice, turn);
+            PlayerTurn(field, choice);
+            turn++;
+            EndGameAI(field, choice, turn);
+        }
         system("cls");
     } while (true);
+}
+void PlayerTurn(char field[LENGTH][HEIGHT], int choice)
+{
+    int x, y;
+    do
+    {
+        for (int i = 0; i < HEIGHT; i++)
+        {
+            for (int j = 0; j < LENGTH; j++)
+            {
+                cout << field[i][j];
+            }
+            cout << "\n";
+        }
+        cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð¿Ð¾Ð·Ð¸Ñ†Ð¸ÑŽ(x,y): ";
+        cin >> x >> y;
+        system("cls");
+    } while (x <= 0 || x > HEIGHT || y <= 0 || y > LENGTH || field[x - 1][y - 1] == 'x' || field[x - 1][y - 1] == 'o');
+    if (choice == 1)
+        field[x - 1][y - 1] = 'x';
+    if (choice == 2)
+        field[x - 1][y - 1] = 'o';
+}
+void AITurn(char field[LENGTH][HEIGHT], int choice)
+{
+    int x, y;
+    do
+    {
+        x = rand() % 3;
+        y = rand() % 3;
+        system("cls");
+    } while (field[x][y] == 'x' || field[x][y] == 'o');
+    if (choice == 1)
+        field[x][y] = 'o';
+    if (choice == 2)
+        field[x][y] = 'x';
+}
+void EndGameAI(char field[LENGTH][HEIGHT], int choice, int turn)
+{
+    for (int i = 0; i < HEIGHT; i++)
+    {
+        if (choice == 1)
+        {
+            if ((field[i][0] == field[i][1] && field[i][1] == field[i][2] && field[i][0] == 'x') ||
+                (field[0][i] == field[1][i] && field[1][i] == field[2][i] && field[0][i] == 'x') ||
+                (field[0][0] == field[1][1] && field[1][1] == field[2][2] && field[0][0] == 'x') ||
+                (field[0][2] == field[1][1] && field[1][1] == field[2][0] && field[0][2] == 'x'))
+            {
+                cout << "Ð’Ñ‹ Ð¿Ð¾Ð±ÐµÐ´Ð¸Ð»Ð¸!\n"; Sleep(WAIT_TIME); system("cls");
+                Menu();
+            }
+            if ((field[i][0] == field[i][1] && field[i][1] == field[i][2] && field[i][0] == 'o') ||
+                (field[0][i] == field[1][i] && field[1][i] == field[2][i] && field[0][i] == 'o') ||
+                (field[0][0] == field[1][1] && field[1][1] == field[2][2] && field[0][0] == 'o') ||
+                (field[0][2] == field[1][1] && field[1][1] == field[2][0] && field[0][2] == 'o'))
+            {
+                cout << "Ð’Ñ‹ Ð¿Ñ€Ð¾Ð¸Ð³Ñ€Ð°Ð»Ð¸.\n"; Sleep(WAIT_TIME); system("cls");
+                Menu();
+            }
+        }
+        else if (choice == 2)
+        {
+            if ((field[i][0] == field[i][1] && field[i][1] == field[i][2] && field[i][0] == 'x') ||
+                (field[0][i] == field[1][i] && field[1][i] == field[2][i] && field[0][i] == 'x') ||
+                (field[0][0] == field[1][1] && field[1][1] == field[2][2] && field[0][0] == 'x') ||
+                (field[0][2] == field[1][1] && field[1][1] == field[2][0] && field[0][2] == 'x'))
+            {
+                cout << "Ð’Ñ‹ Ð¿Ñ€Ð¾Ð¸Ð³Ñ€Ð°Ð»Ð¸!\n"; Sleep(WAIT_TIME); system("cls");
+                Menu();
+            }
+            if ((field[i][0] == field[i][1] && field[i][1] == field[i][2] && field[i][0] == 'o') ||
+                (field[0][i] == field[1][i] && field[1][i] == field[2][i] && field[0][i] == 'o') ||
+                (field[0][0] == field[1][1] && field[1][1] == field[2][2] && field[0][0] == 'o') ||
+                (field[0][2] == field[1][1] && field[1][1] == field[2][0] && field[0][2] == 'o'))
+            {
+                cout << "Ð’Ñ‹ Ð¿Ð¾Ð±ÐµÐ´Ð¸Ð»Ð¸!\n"; Sleep(WAIT_TIME); system("cls");
+                Menu();
+            }
+        }
+        else if (turn == 9)
+        {
+            cout << "ÐÐ¸Ñ‡ÑŒÑ.\n"; Sleep(WAIT_TIME); system("cls");
+            Menu();
+        }
+    }
 }
