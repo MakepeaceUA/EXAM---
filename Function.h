@@ -69,6 +69,8 @@ void Menu()
         Menu();
     }
 }
+
+
 void CreatField(char field[LENGTH][HEIGHT])
 {
 
@@ -80,6 +82,8 @@ void CreatField(char field[LENGTH][HEIGHT])
         }
     }
 }
+
+
 
 void GamePl()
 {
@@ -100,6 +104,8 @@ void GamePl()
         system("cls");
     } while (true);
 }
+
+
 void FirstPlayerTr(char field[LENGTH][HEIGHT])
 {
     int x, y;
@@ -120,6 +126,8 @@ void FirstPlayerTr(char field[LENGTH][HEIGHT])
     } while (x <= 0 || x > HEIGHT || y <= 0 || y > LENGTH || field[x - 1][y - 1] == 'x' || field[x - 1][y - 1] == 'o');
     field[x - 1][y - 1] = 'x';
 }
+
+
 void SecondPlayerTr(char field[LENGTH][HEIGHT])
 {
     int x, y;
@@ -140,6 +148,8 @@ void SecondPlayerTr(char field[LENGTH][HEIGHT])
     } while (x <= 0 || x > HEIGHT || y <= 0 || y > LENGTH || field[x - 1][y - 1] == 'x' || field[x - 1][y - 1] == 'o');
     field[x - 1][y - 1] = 'o';
 }
+
+
 void EndGamePl(char field[LENGTH][HEIGHT], int turn)
 {
     for (int i = 0; i < HEIGHT; i++)
@@ -167,6 +177,8 @@ void EndGamePl(char field[LENGTH][HEIGHT], int turn)
         }
     }
 }
+
+
 
 void GameAI()
 {
@@ -216,6 +228,8 @@ void GameAI()
         system("cls");
     } while (true);
 }
+
+
 void PlayerTurn(char field[LENGTH][HEIGHT], int choice)
 {
     int x, y;
@@ -238,6 +252,8 @@ void PlayerTurn(char field[LENGTH][HEIGHT], int choice)
     if (choice == 2)
         field[x - 1][y - 1] = 'o';
 }
+
+
 void AITurn(char field[LENGTH][HEIGHT], int choice)
 {
     int x, y;
@@ -252,6 +268,9 @@ void AITurn(char field[LENGTH][HEIGHT], int choice)
     if (choice == 2)
         field[x][y] = 'x';
 }
+
+
+
 void EndGameAI(char field[LENGTH][HEIGHT], int choice, int turn)
 {
     for (int i = 0; i < HEIGHT; i++)
