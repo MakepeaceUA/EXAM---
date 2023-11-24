@@ -5,18 +5,18 @@ using namespace std;
 #define LENGTH 3
 #define HEIGHT 3
 
-void Menu();
-void CreatField(char field[LENGTH][HEIGHT]);
+void Menu(); // Функция главного меню
+void CreatField(char field[LENGTH][HEIGHT]); // Функция создания игрового поля
 
-void GamePl();
-void FirstPlayerTr(char field[LENGTH][HEIGHT]);
-void SecondPlayerTr(char field[LENGTH][HEIGHT]);
-void EndGamePl(char field[LENGTH][HEIGHT],int turn);
+void GamePl(); // Функция игры игрока против игрока
+void FirstPlayerTr(char field[LENGTH][HEIGHT]); // Функция хода первого игрока
+void SecondPlayerTr(char field[LENGTH][HEIGHT]); // Функция хода второго игрока
+void EndGamePl(char field[LENGTH][HEIGHT],int turn); // Функция проверки условий победы
 
-void GameAI();
-void PlayerTurn(char field[LENGTH][HEIGHT],int choice);
-void AITurn(char field[LENGTH][HEIGHT], int choice);
-void EndGameAI(char field[LENGTH][HEIGHT],int choce,int turn);
+void GameAI(); // Функция игры игрока против ИИ
+void PlayerTurn(char field[LENGTH][HEIGHT],int choice); // Функция хода игрока
+void AITurn(char field[LENGTH][HEIGHT], int choice); // Функция хода ИИ
+void EndGameAI(char field[LENGTH][HEIGHT],int choce,int turn);  // Функция проверки условий победы
 
 
 
